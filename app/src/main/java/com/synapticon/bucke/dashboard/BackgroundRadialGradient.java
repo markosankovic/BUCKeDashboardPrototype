@@ -43,7 +43,7 @@ public class BackgroundRadialGradient extends View {
         height = getHeight();
 
         mPaint.setAntiAlias(true);
-        mPaint.setShader(new RadialGradient(width / 2, height / 2, width / 2, Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)), Color.TRANSPARENT, Shader.TileMode.MIRROR));
+        mPaint.setShader(new RadialGradient(width / 2, height / 2, Math.round(width - (width * 0.4)), Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)), Color.TRANSPARENT, Shader.TileMode.MIRROR));
 
         canvas.drawCircle(width / 2, height / 2, width / 2, mPaint);
     }

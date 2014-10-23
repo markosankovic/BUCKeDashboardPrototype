@@ -1,7 +1,6 @@
 package com.synapticon.bucke.dashboard;
 
 import android.graphics.Color;
-import android.util.Log;
 
 public class SpeedHSV {
 
@@ -42,19 +41,19 @@ public class SpeedHSV {
 
         if (speed < 14) {
             float fract = speed / 14;
-            Log.i(TAG, String.valueOf(fract));
+            // Log.i(TAG, String.valueOf(fract));
             hsv[0] = colorStop1HSV[0] + (colorStop2HSV[0] - colorStop1HSV[0]) * fract;
             hsv[1] = colorStop1HSV[1] + (colorStop2HSV[1] - colorStop1HSV[1]) * fract;
             hsv[2] = colorStop1HSV[2] + (colorStop2HSV[2] - colorStop1HSV[2]) * fract;
         } else if (speed >= 14 && speed < 32) {
             float fract = (speed - 14) / 18;
-            Log.i(TAG, String.valueOf(fract));
+            // Log.i(TAG, String.valueOf(fract));
             hsv[0] = colorStop2HSV[0] + (colorStop3HSV[0] - colorStop2HSV[0]) * fract;
             hsv[1] = colorStop2HSV[1] + (colorStop3HSV[1] - colorStop2HSV[1]) * fract;
             hsv[2] = colorStop2HSV[2] + (colorStop3HSV[2] - colorStop2HSV[2]) * fract;
         } else {
             float fract = (speed - 32) / 18;
-            Log.i(TAG, String.valueOf(fract));
+            // Log.i(TAG, String.valueOf(fract));
             hsv[0] = colorStop3HSV[0] + (colorStop4HSV[0] - colorStop3HSV[0]) * fract;
             hsv[1] = colorStop3HSV[1] + (colorStop4HSV[1] - colorStop3HSV[1]) * fract;
             hsv[2] = colorStop3HSV[2] + (colorStop4HSV[2] - colorStop3HSV[2]) * fract;

@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/uipart"
     tools:context=".DashboardActivity">
 
     <com.synapticon.bucke.dashboard.BackgroundRadialGradient
@@ -11,6 +10,16 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
+
+    <com.synapticon.bucke.dashboard.Blinker
+        android:id="@+id/left_blinker"
+        android:layout_width="320dp"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/uipart" />
 
     <com.synapticon.bucke.dashboard.SpeedRectangle
         android:id="@+id/speed_rectangle"
@@ -32,8 +41,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ToggleButton
+            android:id="@+id/left_blinker_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ToggleButton
+            android:id="@+id/rightBlink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="bottom"
-        android:padding="40dp">
+        android:padding="10dp">
 
         <SeekBar
             android:id="@+id/speed_bar"

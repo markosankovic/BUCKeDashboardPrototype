@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class DashboardActivity extends Activity {
 
@@ -16,6 +18,9 @@ public class DashboardActivity extends Activity {
     private SpeedRectangle mSpeedRectangle;
     private TextView mSpeedText;
 
+    private Blinker mLeftBlinker;
+    private ToggleButton mLeftBlinkerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +29,15 @@ public class DashboardActivity extends Activity {
         mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
         mSpeedRectangle = (SpeedRectangle) findViewById(R.id.speed_rectangle);
         mSpeedText = (TextView) findViewById(R.id.speed_text);
+
+        mLeftBlinker = (Blinker) findViewById(R.id.left_blinker);
+        mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
+        mLeftBlinkerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mLeftBlinker.setBlink(b);
+            }
+        });
 
         mSpeedBar = (SeekBar) findViewById(R.id.speed_bar);
         mSpeedBar.setOnSeekBarChangeListener(onSpeedBarChangeListener);
