@@ -9,17 +9,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 
-public class Blinker extends View {
+public class LeftBlinker extends View {
 
-    private static final String TAG = Blinker.class.getSimpleName();
+    private static final String TAG = LeftBlinker.class.getSimpleName();
 
     private Paint mPaint;
     private int width, height;
@@ -29,17 +24,17 @@ public class Blinker extends View {
     private ValueAnimator mValueAnimator;
     private float mBlinkWidth;
 
-    public Blinker(Context context) {
+    public LeftBlinker(Context context) {
         super(context);
         init();
     }
 
-    public Blinker(Context context, AttributeSet attrs) {
+    public LeftBlinker(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public Blinker(Context context, AttributeSet attrs, int defStyle) {
+    public LeftBlinker(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -57,9 +52,9 @@ public class Blinker extends View {
 
             mPaint.setAntiAlias(true);
             //Log.i(TAG, String.valueOf(mBlinkWidth));
-            mPaint.setShader(new LinearGradient(0, 0, mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.MIRROR));
+            mPaint.setShader(new LinearGradient(0, 0, mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.CLAMP));
 
-            RectF rectF = new RectF(0, 0, mBlinkWidth, height);
+            RectF rectF = new RectF(0, 0, width, height);
             canvas.drawRect(rectF, mPaint);
         }
     }
@@ -67,7 +62,7 @@ public class Blinker extends View {
     public void setBlink(boolean blink) {
         this.mBlink = blink;
         if (blink) {
-            mValueAnimator = ValueAnimator.ofFloat(50f, 600f, 50f);
+            mValueAnimator = ValueAnimator.ofFloat(80f, 400f, 80f);
             mValueAnimator.setDuration(800);
             mValueAnimator.setRepeatCount(9999);
             mValueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());

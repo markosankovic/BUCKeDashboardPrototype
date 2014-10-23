@@ -18,8 +18,11 @@ public class DashboardActivity extends Activity {
     private SpeedRectangle mSpeedRectangle;
     private TextView mSpeedText;
 
-    private Blinker mLeftBlinker;
+    private LeftBlinker mLeftBlinker;
     private ToggleButton mLeftBlinkerToggle;
+
+    private RightBlinker mRightBlinker;
+    private ToggleButton mRightBlinkerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +33,21 @@ public class DashboardActivity extends Activity {
         mSpeedRectangle = (SpeedRectangle) findViewById(R.id.speed_rectangle);
         mSpeedText = (TextView) findViewById(R.id.speed_text);
 
-        mLeftBlinker = (Blinker) findViewById(R.id.left_blinker);
+        mLeftBlinker = (LeftBlinker) findViewById(R.id.left_blinker);
         mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
         mLeftBlinkerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mLeftBlinker.setBlink(b);
+            }
+        });
+
+        mRightBlinker = (RightBlinker) findViewById(R.id.right_blinker);
+        mRightBlinkerToggle = (ToggleButton) findViewById(R.id.right_blinker_toggle);
+        mRightBlinkerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mRightBlinker.setBlink(b);
             }
         });
 

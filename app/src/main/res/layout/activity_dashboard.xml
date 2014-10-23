@@ -11,10 +11,16 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
-    <com.synapticon.bucke.dashboard.Blinker
+    <com.synapticon.bucke.dashboard.LeftBlinker
         android:id="@+id/left_blinker"
         android:layout_width="320dp"
         android:layout_height="match_parent" />
+
+    <com.synapticon.bucke.dashboard.RightBlinker
+        android:id="@+id/right_blinker"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="320dp" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -54,7 +60,7 @@
             android:layout_weight="1" />
 
         <ToggleButton
-            android:id="@+id/rightBlink"
+            android:id="@+id/right_blinker_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
