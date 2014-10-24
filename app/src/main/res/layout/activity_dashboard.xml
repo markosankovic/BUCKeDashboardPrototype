@@ -27,6 +27,12 @@
         android:layout_height="match_parent"
         android:src="@drawable/uipart" />
 
+    <com.synapticon.bucke.dashboard.InfoBox
+        android:layout_width="165dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp" />
+
     <com.synapticon.bucke.dashboard.SpeedBox
         android:id="@+id/speed_rectangle"
         android:layout_width="280dp"
