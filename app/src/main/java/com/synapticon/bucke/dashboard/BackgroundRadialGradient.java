@@ -11,10 +11,7 @@ import android.view.View;
 
 public class BackgroundRadialGradient extends View {
 
-    private static final String TAG = BackgroundRadialGradient.class.getSimpleName();
-
     private Paint mPaint;
-    private int width, height;
     private float mSpeed;
 
     public BackgroundRadialGradient(Context context) {
@@ -39,13 +36,11 @@ public class BackgroundRadialGradient extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        width = getWidth();
-        height = getHeight();
 
         mPaint.setAntiAlias(true);
-        mPaint.setShader(new RadialGradient(width / 2, height / 2, Math.round(width - (width * 0.4)), Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)), Color.TRANSPARENT, Shader.TileMode.MIRROR));
+        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, Math.round(getWidth() - (getWidth() * 0.4)), Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)), Color.TRANSPARENT, Shader.TileMode.MIRROR));
 
-        canvas.drawCircle(width / 2, height / 2, width / 2, mPaint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, mPaint);
     }
 
     public void setSpeed(float speed) {

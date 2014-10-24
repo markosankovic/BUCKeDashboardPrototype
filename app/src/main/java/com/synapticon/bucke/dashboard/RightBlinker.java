@@ -14,10 +14,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class RightBlinker extends View {
 
-    private static final String TAG = RightBlinker.class.getSimpleName();
-
     private Paint mPaint;
-    private int width, height;
 
     private boolean mBlink;
 
@@ -41,20 +38,15 @@ public class RightBlinker extends View {
 
     private void init() {
         mPaint = new Paint();
+        mPaint.setAntiAlias(true);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mBlink) {
-            width = getWidth();
-            height = getHeight();
-
-            mPaint.setAntiAlias(true);
-            //Log.i(TAG, String.valueOf(mBlinkWidth));
-            mPaint.setShader(new LinearGradient(width, 0, width - mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.CLAMP));
-
-            RectF rectF = new RectF(0, 0, width, height);
+            mPaint.setShader(new LinearGradient(getWidth(), 0, getWidth() - mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.CLAMP));
+            RectF rectF = new RectF(0, 0, getWidth(), getHeight());
             canvas.drawRect(rectF, mPaint);
         }
     }

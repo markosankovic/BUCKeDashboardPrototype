@@ -13,10 +13,6 @@ import android.view.View;
 
 public class SpeedBox extends View {
 
-    private static final String TAG = SpeedBox.class.getSimpleName();
-
-    private int width, height;
-
     private Paint mPaint;
     private TextPaint mSpeedTextPaint;
     private TextPaint mLabelTextPaint;
@@ -57,22 +53,20 @@ public class SpeedBox extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        width = getWidth();
-        height = getHeight();
 
         // Draw rounded rectangle with color matching the speed
         mPaint.setColor(Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)));
-        RectF rectF = new RectF(0, 0, width, height);
+        RectF rectF = new RectF(0, 0, getWidth(), getHeight());
         canvas.drawRoundRect(rectF, 42, 42, mPaint);
 
         // Draw speed text
         canvas.translate(-45, 0);
-        new StaticLayout(String.valueOf((int) mSpeed), mSpeedTextPaint, width, Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
+        new StaticLayout(String.valueOf((int) mSpeed), mSpeedTextPaint, getWidth(), Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
 
         // Draw km/h label only when vehicle is in standstill mode
         if (isStandstill()) {
             canvas.translate(0, 455);
-            new StaticLayout("km/h", mLabelTextPaint, width, Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
+            new StaticLayout("km/h", mLabelTextPaint, getWidth(), Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
         }
 
         canvas.restore();

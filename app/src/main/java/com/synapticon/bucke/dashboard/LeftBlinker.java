@@ -14,10 +14,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class LeftBlinker extends View {
 
-    private static final String TAG = LeftBlinker.class.getSimpleName();
-
     private Paint mPaint;
-    private int width, height;
 
     private boolean mBlink;
 
@@ -47,14 +44,8 @@ public class LeftBlinker extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mBlink) {
-            width = getWidth();
-            height = getHeight();
-
-            mPaint.setAntiAlias(true);
-            //Log.i(TAG, String.valueOf(mBlinkWidth));
             mPaint.setShader(new LinearGradient(0, 0, mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.CLAMP));
-
-            RectF rectF = new RectF(0, 0, width, height);
+            RectF rectF = new RectF(0, 0, getWidth(), getHeight());
             canvas.drawRect(rectF, mPaint);
         }
     }
