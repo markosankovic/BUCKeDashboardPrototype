@@ -27,6 +27,12 @@
         android:layout_height="match_parent"
         android:src="@drawable/uipart" />
 
+    <com.synapticon.bucke.dashboard.BatteryBox
+        android:layout_width="80dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp" />
+
     <com.synapticon.bucke.dashboard.InfoBox
         android:layout_width="165dp"
         android:layout_height="200dp"
