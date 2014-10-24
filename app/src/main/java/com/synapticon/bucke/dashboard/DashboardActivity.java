@@ -15,8 +15,7 @@ public class DashboardActivity extends Activity {
 
     private SeekBar mSpeedBar;
     private BackgroundRadialGradient mBackgroundRadialGradient;
-    private SpeedRectangle mSpeedRectangle;
-    private TextView mSpeedText;
+    private SpeedBox mSpeedBox;
 
     private LeftBlinker mLeftBlinker;
     private ToggleButton mLeftBlinkerToggle;
@@ -30,8 +29,7 @@ public class DashboardActivity extends Activity {
         setContentView(R.layout.activity_dashboard);
 
         mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
-        mSpeedRectangle = (SpeedRectangle) findViewById(R.id.speed_rectangle);
-        mSpeedText = (TextView) findViewById(R.id.speed_text);
+        mSpeedBox = (SpeedBox) findViewById(R.id.speed_rectangle);
 
         mLeftBlinker = (LeftBlinker) findViewById(R.id.left_blinker);
         mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
@@ -78,8 +76,7 @@ public class DashboardActivity extends Activity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             mBackgroundRadialGradient.setSpeed(i);
-            mSpeedRectangle.setSpeed(i);
-            mSpeedText.setText(String.valueOf(i));
+            mSpeedBox.setSpeed(i);
         }
 
         @Override

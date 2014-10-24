@@ -27,22 +27,12 @@
         android:layout_height="match_parent"
         android:src="@drawable/uipart" />
 
-    <com.synapticon.bucke.dashboard.SpeedRectangle
+    <com.synapticon.bucke.dashboard.SpeedBox
         android:id="@+id/speed_rectangle"
         android:layout_width="280dp"
         android:layout_height="280dp"
         android:layout_marginStart="240dp"
         android:layout_marginTop="40dp" />
-
-    <TextView
-        android:id="@+id/speed_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="120dp"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="150dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
