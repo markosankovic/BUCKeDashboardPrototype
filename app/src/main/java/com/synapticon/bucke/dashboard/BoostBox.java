@@ -8,21 +8,21 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class BatteryBox extends View {
+public class BoostBox extends View {
 
     private Paint mPaint;
 
-    public BatteryBox(Context context) {
+    public BoostBox(Context context) {
         super(context);
         init();
     }
 
-    public BatteryBox(Context context, AttributeSet attrs) {
+    public BoostBox(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public BatteryBox(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BoostBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -39,6 +39,6 @@ public class BatteryBox extends View {
 
         // Draw rounded rectangle
         RectF rectF = new RectF(0, 0, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, 22, 22, mPaint);
+        canvas.drawRoundRect(rectF, 33, 33, mPaint);
     }
 }
