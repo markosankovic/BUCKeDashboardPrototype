@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -43,11 +44,13 @@ public class SpeedBox extends View {
         mSpeedTextPaint.setARGB(255, 255, 255, 255);
         mSpeedTextPaint.setTextSize(413.33f);
         mSpeedTextPaint.setAntiAlias(true);
+        mSpeedTextPaint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Roman.otf"));
 
         mLabelTextPaint = new TextPaint();
         mLabelTextPaint.setARGB(255, 255, 255, 255);
         mLabelTextPaint.setTextSize(51.42f);
         mLabelTextPaint.setAntiAlias(true);
+        mLabelTextPaint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf"));
     }
 
     @Override
@@ -60,12 +63,12 @@ public class SpeedBox extends View {
         canvas.drawRoundRect(rectF, 42, 42, mPaint);
 
         // Draw speed text
-        canvas.translate(-45, 0);
+        canvas.translate(-45, 32);
         new StaticLayout(String.valueOf((int) mSpeed), mSpeedTextPaint, getWidth(), Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
 
         // Draw km/h label only when vehicle is in standstill mode
         if (isStandstill()) {
-            canvas.translate(0, 455);
+            canvas.translate(-20, 428);
             new StaticLayout("km/h", mLabelTextPaint, getWidth(), Layout.Alignment.ALIGN_OPPOSITE, 1f, 0f, true).draw(canvas);
         }
 
