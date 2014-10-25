@@ -40,6 +40,13 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="80dp" />
 
+    <com.synapticon.bucke.dashboard.HighBeamCard
+        android:id="@+id/high_beam"
+        android:layout_width="165dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp" />
+
     <com.synapticon.bucke.dashboard.SpeedBox
         android:id="@+id/speed_rectangle"
         android:layout_width="280dp"
@@ -50,12 +57,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <ToggleButton
             android:id="@+id/left_blinker_toggle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textOff="L"
+            android:textOn="L" />
+
+        <ToggleButton
+            android:id="@+id/high_beam_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="BEAM"
+            android:textOn="BEAM" />
 
         <View
             android:layout_width="wrap_content"
@@ -65,18 +82,21 @@
         <ToggleButton
             android:id="@+id/right_blinker_toggle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textOff="R"
+            android:textOn="R" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <SeekBar
             android:id="@+id/speed_bar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/view"

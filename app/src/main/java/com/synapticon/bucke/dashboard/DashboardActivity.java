@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -25,6 +24,9 @@ public class DashboardActivity extends Activity {
 
     private RightBlinker mRightBlinker;
     private ToggleButton mRightBlinkerToggle;
+
+    private HighBeamCard mHighBeamCard;
+    private ToggleButton mHighBeamToggle;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -54,6 +56,15 @@ public class DashboardActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mRightBlinker.setBlink(b);
+            }
+        });
+
+        mHighBeamCard = (HighBeamCard) findViewById(R.id.high_beam);
+        mHighBeamToggle = (ToggleButton) findViewById(R.id.high_beam_toggle);
+        mHighBeamToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mHighBeamCard.setOn(b);
             }
         });
 
