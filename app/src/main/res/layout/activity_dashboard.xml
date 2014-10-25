@@ -54,6 +54,13 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="80dp" />
 
+    <com.synapticon.bucke.dashboard.SoundCard
+        android:id="@+id/sound_card"
+        android:layout_width="165dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp" />
+
     <com.synapticon.bucke.dashboard.SpeedBox
         android:id="@+id/speed_rectangle"
         android:layout_width="280dp"
@@ -82,6 +89,15 @@
             android:layout_toRightOf="@id/high_beam_icon"
             android:background="@android:color/transparent"
             android:src="@drawable/transition_camera" />
+
+        <ImageView
+            android:id="@+id/sound_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_toRightOf="@id/camera_icon"
+            android:background="@android:color/transparent"
+            android:src="@drawable/transition_sound" />
     </RelativeLayout>
 
     <LinearLayout
@@ -110,6 +126,13 @@
             android:layout_height="wrap_content"
             android:textOff="CAM"
             android:textOn="CAM" />
+
+        <ToggleButton
+            android:id="@+id/sound_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="SND"
+            android:textOn="SND" />
 
         <View
             android:layout_width="wrap_content"

@@ -36,6 +36,10 @@ public class DashboardActivity extends Activity {
     private ImageView mCameraIcon;
     private ToggleButton mCameraToggle;
 
+    private SoundCard mSoundCard;
+    private ImageView mSoundIcon;
+    private ToggleButton mSoundToggle;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
@@ -86,6 +90,17 @@ public class DashboardActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mCameraCard.setOn(b);
                 toggleDrawableState(mCameraIcon.getDrawable(), b);
+            }
+        });
+
+        mSoundCard = (SoundCard) findViewById(R.id.sound_card);
+        mSoundIcon = (ImageView) findViewById(R.id.sound_icon);
+        mSoundToggle = (ToggleButton) findViewById(R.id.sound_toggle);
+        mSoundToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mSoundCard.setOn(b);
+                toggleDrawableState(mSoundIcon.getDrawable(), b);
             }
         });
 
