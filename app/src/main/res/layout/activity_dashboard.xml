@@ -41,7 +41,14 @@
         android:layout_marginTop="80dp" />
 
     <com.synapticon.bucke.dashboard.HighBeamCard
-        android:id="@+id/high_beam"
+        android:id="@+id/high_beam_card"
+        android:layout_width="165dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp" />
+
+    <com.synapticon.bucke.dashboard.CameraCard
+        android:id="@+id/camera_card"
         android:layout_width="165dp"
         android:layout_height="200dp"
         android:layout_marginStart="100dp"
@@ -66,6 +73,15 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/transition_high_beam" />
+
+        <ImageView
+            android:id="@+id/camera_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_toRightOf="@id/high_beam_icon"
+            android:background="@android:color/transparent"
+            android:src="@drawable/transition_camera" />
     </RelativeLayout>
 
     <LinearLayout
@@ -85,8 +101,15 @@
             android:id="@+id/high_beam_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOff="BEAM"
-            android:textOn="BEAM" />
+            android:textOff="LGT"
+            android:textOn="LGT" />
+
+        <ToggleButton
+            android:id="@+id/camera_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="CAM"
+            android:textOn="CAM" />
 
         <View
             android:layout_width="wrap_content"

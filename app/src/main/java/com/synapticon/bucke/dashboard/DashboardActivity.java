@@ -29,8 +29,12 @@ public class DashboardActivity extends Activity {
     private ToggleButton mRightBlinkerToggle;
 
     private HighBeamCard mHighBeamCard;
-    private ToggleButton mHighBeamToggle;
     private ImageView mHighBeamIcon;
+    private ToggleButton mHighBeamToggle;
+
+    private CameraCard mCameraCard;
+    private ImageView mCameraIcon;
+    private ToggleButton mCameraToggle;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -63,7 +67,7 @@ public class DashboardActivity extends Activity {
             }
         });
 
-        mHighBeamCard = (HighBeamCard) findViewById(R.id.high_beam);
+        mHighBeamCard = (HighBeamCard) findViewById(R.id.high_beam_card);
         mHighBeamIcon = (ImageView) findViewById(R.id.high_beam_icon);
         mHighBeamToggle = (ToggleButton) findViewById(R.id.high_beam_toggle);
         mHighBeamToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -71,6 +75,17 @@ public class DashboardActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mHighBeamCard.setOn(b);
                 toggleDrawableState(mHighBeamIcon.getDrawable(), b);
+            }
+        });
+
+        mCameraCard = (CameraCard) findViewById(R.id.camera_card);
+        mCameraIcon = (ImageView) findViewById(R.id.camera_icon);
+        mCameraToggle = (ToggleButton) findViewById(R.id.camera_toggle);
+        mCameraToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mCameraCard.setOn(b);
+                toggleDrawableState(mCameraIcon.getDrawable(), b);
             }
         });
 
@@ -112,7 +127,6 @@ public class DashboardActivity extends Activity {
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
-
 
     /**
      * Animate drawable state: high beam, action camera and sounds
