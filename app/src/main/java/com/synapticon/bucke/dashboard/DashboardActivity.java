@@ -25,6 +25,8 @@ public class DashboardActivity extends Activity {
     private LeftBlinker mLeftBlinker;
     private ToggleButton mLeftBlinkerToggle;
 
+    private ToggleButton mModeToggle;
+
     private RightBlinker mRightBlinker;
     private ToggleButton mRightBlinkerToggle;
 
@@ -68,6 +70,14 @@ public class DashboardActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mRightBlinker.setBlink(b);
+            }
+        });
+
+        mModeToggle = (ToggleButton) findViewById(R.id.mode_toggle);
+        mModeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mSpeedBox.setDriving(b);
             }
         });
 

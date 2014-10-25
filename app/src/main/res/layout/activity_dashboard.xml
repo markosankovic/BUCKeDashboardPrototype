@@ -139,6 +139,13 @@
             android:layout_weight="1" />
 
         <ToggleButton
+            android:id="@+id/mode_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="STAND"
+            android:textOn="DRIVE" />
+
+        <ToggleButton
             android:id="@+id/right_blinker_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

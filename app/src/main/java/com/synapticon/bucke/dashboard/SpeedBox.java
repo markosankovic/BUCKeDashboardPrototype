@@ -82,6 +82,7 @@ public class SpeedBox extends View {
 
     public void setDriving(boolean driving) {
         this.driving = driving;
+        invalidate();
     }
 
     public boolean isDriving() {
