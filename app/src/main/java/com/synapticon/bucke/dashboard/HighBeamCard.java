@@ -72,12 +72,12 @@ public class HighBeamCard extends View {
 
         if (on) {
             canvas.drawBitmap(mOnBitmap, 60, 60, new Paint());
-            canvas.translate(-27, 280);
-            new StaticLayout("ON", mLabelTextPaint, getWidth(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+            canvas.translate(0, 280);
+            new StaticLayout("ON", mLabelTextPaint, 280, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         } else {
             canvas.drawBitmap(mOffBitmap, 60, 60, new Paint());
-            canvas.translate(-27, 280);
-            new StaticLayout("OFF", mLabelTextPaint, getWidth(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+            canvas.translate(0, 280);
+            new StaticLayout("OFF", mLabelTextPaint, 280, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         }
 
         canvas.restore();
