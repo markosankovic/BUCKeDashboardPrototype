@@ -8,8 +8,7 @@
         android:id="@+id/color_gradient_circle_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_marginStart="120dp" />
 
     <com.synapticon.bucke.dashboard.LeftBlinker
         android:id="@+id/left_blinker"

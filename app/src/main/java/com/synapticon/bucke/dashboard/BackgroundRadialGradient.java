@@ -38,9 +38,11 @@ public class BackgroundRadialGradient extends View {
         super.onDraw(canvas);
 
         mPaint.setAntiAlias(true);
-        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, Math.round(getWidth() - (getWidth() * 0.4)), Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)), Color.TRANSPARENT, Shader.TileMode.MIRROR));
 
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, mPaint);
+        int speedColor = Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed));
+        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, getWidth() / 2, speedColor, Color.TRANSPARENT, Shader.TileMode.CLAMP));
+
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth(), mPaint);
     }
 
     public void setSpeed(float speed) {
