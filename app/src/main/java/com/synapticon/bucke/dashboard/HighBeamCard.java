@@ -51,8 +51,8 @@ public class HighBeamCard extends View {
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.parseColor("#E6FFFFFF"));
 
-        mOnBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.high_beam_on);
-        mOffBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.high_beam_off);
+        mOnBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.ca_high_beam_on);
+        mOffBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.ca_high_beam_off);
 
         mLabelTextPaint = new TextPaint();
         mLabelTextPaint.setColor(Color.parseColor("#FF3C3C3B"));
@@ -90,8 +90,10 @@ public class HighBeamCard extends View {
             mValueAnimator.end();
         }
 
-        mValueAnimator = ValueAnimator.ofFloat(0f, getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), getWidth(), 0f);
-        mValueAnimator.setDuration(3000);
+        int w = getWidth();
+
+        mValueAnimator = ValueAnimator.ofFloat(0f, w, w, w, w, w, w, w, w, w, w, w, w, w, 0f);
+        mValueAnimator.setDuration(2600);
         mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {

@@ -2,10 +2,13 @@ package com.synapticon.bucke.dashboard;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
@@ -27,6 +30,7 @@ public class DashboardActivity extends Activity {
 
     private HighBeamCard mHighBeamCard;
     private ToggleButton mHighBeamToggle;
+    private ImageView mHighBeamIcon;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -60,11 +64,13 @@ public class DashboardActivity extends Activity {
         });
 
         mHighBeamCard = (HighBeamCard) findViewById(R.id.high_beam);
+        mHighBeamIcon = (ImageView) findViewById(R.id.high_beam_icon);
         mHighBeamToggle = (ToggleButton) findViewById(R.id.high_beam_toggle);
         mHighBeamToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mHighBeamCard.setOn(b);
+                toggleDrawableState(mHighBeamIcon.getDrawable(), b);
             }
         });
 
@@ -106,4 +112,20 @@ public class DashboardActivity extends Activity {
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
+
+
+    /**
+     * Animate drawable state: high beam, action camera and sounds
+     *
+     * @param drawable
+     * @param state
+     */
+    void toggleDrawableState(Drawable drawable, boolean state) {
+        TransitionDrawable transitionDrawable = (TransitionDrawable) drawable;
+        if (state) {
+            transitionDrawable.startTransition(600);
+        } else {
+            transitionDrawable.reverseTransition(600);
+        }
+    }
 }
