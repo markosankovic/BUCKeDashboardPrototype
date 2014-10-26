@@ -60,8 +60,15 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="80dp" />
 
+    <com.synapticon.bucke.dashboard.ReducedPowerCard
+        android:id="@+id/reduced_power_card"
+        android:layout_width="165dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp" />
+
     <com.synapticon.bucke.dashboard.SpeedBox
-        android:id="@+id/speed_rectangle"
+        android:id="@+id/speed_box"
         android:layout_width="280dp"
         android:layout_height="280dp"
         android:layout_marginStart="240dp"
@@ -99,9 +106,24 @@
             android:src="@drawable/transition_sound" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="313dp"
+        android:layout_toRightOf="@id/speed_box">
+
+        <ImageView
+            android:id="@+id/warning_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/transition_warning" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -132,6 +154,13 @@
             android:layout_height="wrap_content"
             android:textOff="SND"
             android:textOn="SND" />
+
+        <ToggleButton
+            android:id="@+id/reduced_power_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="RED"
+            android:textOn="RED" />
 
         <View
             android:layout_width="wrap_content"

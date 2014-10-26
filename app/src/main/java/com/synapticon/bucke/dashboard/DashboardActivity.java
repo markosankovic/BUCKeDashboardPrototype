@@ -42,6 +42,9 @@ public class DashboardActivity extends Activity {
     private ImageView mSoundIcon;
     private ToggleButton mSoundToggle;
 
+    private ReducedPowerCard mReducedPowerCard;
+    private ToggleButton mReducedPowerToggle;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
@@ -53,7 +56,7 @@ public class DashboardActivity extends Activity {
         setContentView(R.layout.activity_dashboard);
 
         mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
-        mSpeedBox = (SpeedBox) findViewById(R.id.speed_rectangle);
+        mSpeedBox = (SpeedBox) findViewById(R.id.speed_box);
 
         mLeftBlinker = (LeftBlinker) findViewById(R.id.left_blinker);
         mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
@@ -111,6 +114,15 @@ public class DashboardActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mSoundCard.setOn(b);
                 toggleDrawableState(mSoundIcon.getDrawable(), b);
+            }
+        });
+
+        mReducedPowerCard = (ReducedPowerCard) findViewById(R.id.reduced_power_card);
+        mReducedPowerToggle = (ToggleButton) findViewById(R.id.reduced_power_toggle);
+        mReducedPowerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mReducedPowerCard.setOn(b);
             }
         });
 
