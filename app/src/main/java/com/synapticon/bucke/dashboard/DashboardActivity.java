@@ -45,6 +45,8 @@ public class DashboardActivity extends Activity {
     private ReducedPowerCard mReducedPowerCard;
     private ToggleButton mReducedPowerToggle;
 
+    private InfoBox mInfoBox;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
@@ -57,6 +59,8 @@ public class DashboardActivity extends Activity {
 
         mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
         mSpeedBox = (SpeedBox) findViewById(R.id.speed_box);
+
+        mInfoBox = (InfoBox) findViewById(R.id.info_box);
 
         mLeftBlinker = (LeftBlinker) findViewById(R.id.left_blinker);
         mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
@@ -81,6 +85,7 @@ public class DashboardActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mSpeedBox.setDriving(b);
+                mInfoBox.setDriving(b);
             }
         });
 

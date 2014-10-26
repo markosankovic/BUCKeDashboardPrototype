@@ -34,6 +34,7 @@
         android:layout_marginTop="68dp" />
 
     <com.synapticon.bucke.dashboard.InfoBox
+        android:id="@+id/info_box"
         android:layout_width="165dp"
         android:layout_height="200dp"
         android:layout_marginStart="100dp"
