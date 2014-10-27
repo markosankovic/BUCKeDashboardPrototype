@@ -7,6 +7,7 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -17,6 +18,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class DashboardActivity extends Activity {
 
     private static final String TAG = DashboardActivity.class.getSimpleName();
+
+    private boolean hideToggleButtons = false;
 
     private SeekBar mSpeedBar;
     private BackgroundRadialGradient mBackgroundRadialGradient;
@@ -133,6 +136,17 @@ public class DashboardActivity extends Activity {
 
         mSpeedBar = (SeekBar) findViewById(R.id.speed_bar);
         mSpeedBar.setOnSeekBarChangeListener(onSpeedBarChangeListener);
+
+        if (hideToggleButtons) {
+            mLeftBlinkerToggle.setVisibility(View.GONE);
+            mHighBeamToggle.setVisibility(View.GONE);
+            mCameraToggle.setVisibility(View.GONE);
+            mSoundToggle.setVisibility(View.GONE);
+            mReducedPowerToggle.setVisibility(View.GONE);
+            mModeToggle.setVisibility(View.GONE);
+            mRightBlinkerToggle.setVisibility(View.GONE);
+            mSpeedBar.setVisibility(View.GONE);
+        }
     }
 
     @Override

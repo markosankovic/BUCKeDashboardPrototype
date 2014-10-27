@@ -21,6 +21,27 @@
         android:layout_height="match_parent"
         android:layout_marginStart="320dp" />
 
+    <DigitalClock
+        fontPath="fonts/HelveticaNeueLTStd-Roman.otf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="26dp"
+        android:textSize="25sp"
+        android:textStyle="normal" />
+
+    <ImageButton
+        android:id="@+id/navigationDrawerImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="599dp"
+        android:layout_marginTop="9dp"
+        android:background="@android:color/transparent"
+        android:minHeight="40dp"
+        android:minWidth="40dp"
+        android:onClick="showNavigationDrawer"
+        android:src="@drawable/selector_navigation_drawer" />
+
     <com.synapticon.bucke.dashboard.BatteryBox
         android:layout_width="80dp"
         android:layout_height="160dp"
@@ -86,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/transition_high_beam" />
+            android:src="@drawable/transition_high_beam_icon" />
 
         <ImageView
             android:id="@+id/camera_icon"
@@ -95,7 +116,7 @@
             android:layout_marginStart="40dp"
             android:layout_toRightOf="@id/high_beam_icon"
             android:background="@android:color/transparent"
-            android:src="@drawable/transition_camera" />
+            android:src="@drawable/transition_camera_icon" />
 
         <ImageView
             android:id="@+id/sound_icon"
@@ -104,7 +125,7 @@
             android:layout_marginStart="40dp"
             android:layout_toRightOf="@id/camera_icon"
             android:background="@android:color/transparent"
-            android:src="@drawable/transition_sound" />
+            android:src="@drawable/transition_sound_icon" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -119,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/transition_warning" />
+            android:src="@drawable/transition_warning_icon" />
     </RelativeLayout>
 
     <LinearLayout
