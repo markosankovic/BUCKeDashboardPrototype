@@ -147,7 +147,7 @@ public class BatteryBox extends View {
      */
     private float progressBarHeight(int height, int percentage) {
         // 7f is height of the bottom frame border, start clipping from the inner edge of the frame
-        return height - ((height - 14) * (percentage / 100f) + 7f);
+        return height - ((height - 12) * (percentage / 100f) + 6f);
     }
 
     public int getBatteryStateOfCharge() {

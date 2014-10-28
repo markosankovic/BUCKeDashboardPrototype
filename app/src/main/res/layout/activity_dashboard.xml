@@ -50,10 +50,11 @@
         android:layout_marginTop="100dp" />
 
     <com.synapticon.bucke.dashboard.BoostBox
-        android:layout_width="110dp"
-        android:layout_height="225dp"
-        android:layout_marginStart="490dp"
-        android:layout_marginTop="68dp" />
+        android:id="@+id/boost_box"
+        android:layout_width="80dp"
+        android:layout_height="226dp"
+        android:layout_marginStart="520dp"
+        android:layout_marginTop="67dp" />
 
     <com.synapticon.bucke.dashboard.InfoBox
         android:id="@+id/info_box"

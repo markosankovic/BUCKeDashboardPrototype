@@ -26,9 +26,11 @@ public class DashboardActivity extends Activity {
 
     private SeekBar mSpeedBar;
     private SeekBar mBatteryBar;
+    private SeekBar mBoostBar;
 
     private SpeedBox mSpeedBox;
     private BatteryBox mBatteryBox;
+    private BoostBox mBoostBox;
 
     private BackgroundRadialGradient mBackgroundRadialGradient;
 
@@ -71,6 +73,7 @@ public class DashboardActivity extends Activity {
 
         mSpeedBox = (SpeedBox) findViewById(R.id.speed_box);
         mBatteryBox = (BatteryBox) findViewById(R.id.battery_box);
+        mBoostBox = (BoostBox) findViewById(R.id.boost_box);
 
         mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
 
@@ -151,6 +154,9 @@ public class DashboardActivity extends Activity {
         mBatteryBar = (SeekBar) findViewById(R.id.battery_bar);
         mBatteryBar.setOnSeekBarChangeListener(onBatteryBarChangeListener);
 
+        mBoostBar = (SeekBar) findViewById(R.id.boost_bar);
+        mBoostBar.setOnSeekBarChangeListener(onBoostBarChangeListener);
+
         mBatteryChargeText = (TextView) findViewById(R.id.battery_charge_text);
         mBatteryChargeText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -222,6 +228,21 @@ public class DashboardActivity extends Activity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             mBatteryBox.setBatteryStateOfCharge(i);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener onBoostBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            mBoostBox.setBoost(i);
         }
 
         @Override
