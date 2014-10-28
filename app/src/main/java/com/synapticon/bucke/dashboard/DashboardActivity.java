@@ -5,12 +5,15 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -53,6 +56,8 @@ public class DashboardActivity extends Activity {
     private ToggleButton mReducedPowerToggle;
 
     private InfoBox mInfoBox;
+
+    private TextView mBatteryChargeText;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -145,6 +150,26 @@ public class DashboardActivity extends Activity {
 
         mBatteryBar = (SeekBar) findViewById(R.id.battery_bar);
         mBatteryBar.setOnSeekBarChangeListener(onBatteryBarChangeListener);
+
+        mBatteryChargeText = (TextView) findViewById(R.id.battery_charge_text);
+        mBatteryChargeText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                try {
+                    int n = Integer.valueOf(charSequence.toString());
+                    mBatteryBox.setBatteryCharge(n);
+                } catch (NumberFormatException e) {
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
 
         if (hideToggleButtons) {
             mLeftBlinkerToggle.setVisibility(View.GONE);
