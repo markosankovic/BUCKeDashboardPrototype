@@ -22,8 +22,12 @@ public class DashboardActivity extends Activity {
     private boolean hideToggleButtons = false;
 
     private SeekBar mSpeedBar;
-    private BackgroundRadialGradient mBackgroundRadialGradient;
+    private SeekBar mBatteryBar;
+
     private SpeedBox mSpeedBox;
+    private BatteryBox mBatteryBox;
+
+    private BackgroundRadialGradient mBackgroundRadialGradient;
 
     private LeftBlinker mLeftBlinker;
     private ToggleButton mLeftBlinkerToggle;
@@ -60,8 +64,10 @@ public class DashboardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
         mSpeedBox = (SpeedBox) findViewById(R.id.speed_box);
+        mBatteryBox = (BatteryBox) findViewById(R.id.battery_box);
+
+        mBackgroundRadialGradient = (BackgroundRadialGradient) findViewById(R.id.color_gradient_circle_button);
 
         mInfoBox = (InfoBox) findViewById(R.id.info_box);
 
@@ -137,6 +143,9 @@ public class DashboardActivity extends Activity {
         mSpeedBar = (SeekBar) findViewById(R.id.speed_bar);
         mSpeedBar.setOnSeekBarChangeListener(onSpeedBarChangeListener);
 
+        mBatteryBar = (SeekBar) findViewById(R.id.battery_bar);
+        mBatteryBar.setOnSeekBarChangeListener(onBatteryBarChangeListener);
+
         if (hideToggleButtons) {
             mLeftBlinkerToggle.setVisibility(View.GONE);
             mHighBeamToggle.setVisibility(View.GONE);
@@ -173,6 +182,21 @@ public class DashboardActivity extends Activity {
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             mBackgroundRadialGradient.setSpeed(i);
             mSpeedBox.setSpeed(i);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener onBatteryBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            mBatteryBox.setBatteryStateOfCharge(i);
         }
 
         @Override
