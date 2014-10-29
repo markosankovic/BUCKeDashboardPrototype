@@ -20,7 +20,7 @@ public class BatteryBox extends View {
     private TextPaint mBatteryTextPaintStandstill;
     private TextPaint mBatteryTextPaintDriving;
 
-    private boolean driving;
+    private boolean mDriving;
     private int mBatteryStateOfCharge = 100;
     private int mBatteryCharge = 0;
 
@@ -141,7 +141,7 @@ public class BatteryBox extends View {
         }
 
         if (!isDriving() && mBatteryCharge == 0) {
-            canvas.translate(0, 120);
+            canvas.translate(0, 117);
             new StaticLayout(String.valueOf(mBatteryStateOfCharge) + "\n%", mBatteryTextPaintStandstill, 120, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         } else {
             canvas.translate(0, 130);
@@ -183,11 +183,11 @@ public class BatteryBox extends View {
     }
 
     public boolean isDriving() {
-        return driving;
+        return mDriving;
     }
 
     public void setDriving(boolean driving) {
-        this.driving = driving;
+        this.mDriving = driving;
         invalidate();
     }
 }

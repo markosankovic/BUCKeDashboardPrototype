@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -18,6 +16,7 @@ public class BoostBox extends View {
 
     private Paint mPaint;
 
+    private boolean mDriving;
     private int mBoost = 100;
 
     private Bitmap mGreenFrameBitmap;
@@ -93,8 +92,16 @@ public class BoostBox extends View {
 
         canvas.drawBitmap(frameBitmap, 0, 0, mPaint);
 
-        canvas.translate(0, 155);
-        new StaticLayout("max\nboost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+        if (!isDriving()) {
+            if (mBoost == 100) {
+                canvas.translate(0, 165);
+                new StaticLayout("max\nboost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+            } else {
+                canvas.translate(0, 197);
+                new StaticLayout("boost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+            }
+        }
+
         canvas.restore();
     }
 
@@ -117,6 +124,15 @@ public class BoostBox extends View {
 
     public void setBoost(int mBoost) {
         this.mBoost = mBoost;
+        invalidate();
+    }
+
+    public boolean isDriving() {
+        return mDriving;
+    }
+
+    public void setDriving(boolean driving) {
+        this.mDriving = driving;
         invalidate();
     }
 }

@@ -111,8 +111,9 @@ public class DashboardActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mBatteryBox.setDriving(b);
-                mSpeedBox.setDriving(b);
                 mInfoBox.setDriving(b);
+                mSpeedBox.setDriving(b);
+                mBoostBox.setDriving(b);
 
                 if (b) {
                     mTextClockStandstill.setVisibility(View.GONE);
