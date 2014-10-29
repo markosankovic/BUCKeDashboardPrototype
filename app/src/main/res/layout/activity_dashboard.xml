@@ -171,14 +171,6 @@
             android:textOff="RED"
             android:textOn="RED" />
 
-        <ToggleButton
-            android:id="@+id/ui_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:textOff="UI"
-            android:textOn="UI" />
-
         <EditText
             android:id="@+id/battery_charge_text"
             android:layout_width="50dp"
@@ -187,6 +179,14 @@
             android:imeOptions="actionDone|flagNoExtractUi"
             android:inputType="numberSigned"
             android:text="0" />
+
+        <ToggleButton
+            android:id="@+id/ui_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:textOff="UI"
+            android:textOn="UI" />
 
         <View
             android:layout_width="wrap_content"
