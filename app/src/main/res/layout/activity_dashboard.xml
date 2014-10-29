@@ -21,14 +21,28 @@
         android:layout_height="match_parent"
         android:layout_marginStart="320dp" />
 
-    <DigitalClock
+    <TextClock
+        android:id="@+id/text_clock_standstill"
         fontPath="fonts/HelveticaNeueLTStd-Roman.otf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="26dp"
+        android:format12Hour="h:m"
         android:textSize="25sp"
         android:textStyle="normal" />
+
+    <TextClock
+        android:id="@+id/text_clock_driving"
+        fontPath="fonts/HelveticaNeueLTStd-Roman.otf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        android:format12Hour="h:m"
+        android:textSize="40sp"
+        android:textStyle="normal"
+        android:visibility="gone" />
 
     <ImageButton
         android:id="@+id/navigationDrawerImageButton"

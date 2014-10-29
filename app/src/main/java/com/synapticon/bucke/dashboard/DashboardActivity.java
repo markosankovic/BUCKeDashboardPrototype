@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -63,6 +64,9 @@ public class DashboardActivity extends Activity {
 
     private TextView mBatteryChargeText;
 
+    private TextClock mTextClockStandstill;
+    private TextClock mTextClockDriving;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
@@ -99,12 +103,23 @@ public class DashboardActivity extends Activity {
             }
         });
 
+        mTextClockStandstill = (TextClock) findViewById(R.id.text_clock_standstill);
+        mTextClockDriving = (TextClock) findViewById(R.id.text_clock_driving);
+
         mModeToggle = (ToggleButton) findViewById(R.id.mode_toggle);
         mModeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mSpeedBox.setDriving(b);
                 mInfoBox.setDriving(b);
+
+                if (b) {
+                    mTextClockStandstill.setVisibility(View.GONE);
+                    mTextClockDriving.setVisibility(View.VISIBLE);
+                } else {
+                    mTextClockStandstill.setVisibility(View.VISIBLE);
+                    mTextClockDriving.setVisibility(View.GONE);
+                }
             }
         });
 
