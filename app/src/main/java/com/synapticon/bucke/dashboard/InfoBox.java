@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -22,6 +24,10 @@ public class InfoBox extends View {
 
     private Typeface mTypefaceTh;
     private Typeface mTypefaceRoman;
+
+    private int[] mColors;
+    private float[] mPositions;
+    private RadialGradient mRadialGradient;
 
     public InfoBox(Context context) {
         super(context);
@@ -41,7 +47,9 @@ public class InfoBox extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.parseColor("#FF32475A"));
+
+        mColors = new int[]{Color.parseColor("#FF3B5369"), Color.parseColor("#FF32475A")};
+        mPositions = new float[]{0f, 1f};
 
         mTypefaceTh = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf");
         mTypefaceRoman = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Roman.otf");
@@ -62,6 +70,8 @@ public class InfoBox extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, getHeight() / 2, mColors, mPositions, Shader.TileMode.CLAMP));
 
         // Draw rounded rectangle
         RectF rectF = new RectF(0, 0, getWidth(), getHeight());
