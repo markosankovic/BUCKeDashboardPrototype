@@ -21,51 +21,43 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DashboardActivity extends Activity {
 
-    private static final String TAG = DashboardActivity.class.getSimpleName();
-
-    private boolean mShowToggleButtons = true;
-
-    private ToggleButton mUiToggle;
-
-    private SeekBar mSpeedBar;
-    private SeekBar mBatteryBar;
-    private SeekBar mBoostBar;
-
-    private SpeedBox mSpeedBox;
-    private BatteryBox mBatteryBox;
-    private BoostBox mBoostBox;
-
     private BackgroundRadialGradient mBackgroundRadialGradient;
 
     private LeftBlinker mLeftBlinker;
-    private ToggleButton mLeftBlinkerToggle;
-
-    private ToggleButton mModeToggle;
-
     private RightBlinker mRightBlinker;
-    private ToggleButton mRightBlinkerToggle;
+
+    private BatteryBox mBatteryBox;
+    private InfoBox mInfoBox;
+    private SpeedBox mSpeedBox;
+    private BoostBox mBoostBox;
 
     private HighBeamCard mHighBeamCard;
     private ImageView mHighBeamIcon;
-    private ToggleButton mHighBeamToggle;
-
     private CameraCard mCameraCard;
     private ImageView mCameraIcon;
-    private ToggleButton mCameraToggle;
-
     private SoundCard mSoundCard;
     private ImageView mSoundIcon;
-    private ToggleButton mSoundToggle;
-
     private ReducedPowerCard mReducedPowerCard;
-    private ToggleButton mReducedPowerToggle;
-
-    private InfoBox mInfoBox;
-
-    private TextView mBatteryChargeText;
 
     private TextClock mTextClockStandstill;
     private TextClock mTextClockDriving;
+
+    private boolean mShowToggleButtons = true;
+
+    private ToggleButton mLeftBlinkerToggle;
+    private ToggleButton mHighBeamToggle;
+    private ToggleButton mCameraToggle;
+    private ToggleButton mSoundToggle;
+    private ToggleButton mReducedPowerToggle;
+    private TextView mBatteryChargeText;
+    private ToggleButton mUiToggle;
+    private ToggleButton mModeToggle;
+    private ToggleButton mRightBlinkerToggle;
+
+    private SeekBar mSpeedBar;
+    private SeekBar mBatteryBar;
+
+    private SeekBar mBoostBar;
 
     @Override
     protected void attachBaseContext(Context newBase) {
