@@ -7,8 +7,7 @@
     <com.synapticon.bucke.dashboard.BackgroundRadialGradient
         android:id="@+id/color_gradient_circle_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="120dp" />
+        android:layout_height="match_parent" />
 
     <com.synapticon.bucke.dashboard.LeftBlinker
         android:id="@+id/left_blinker"

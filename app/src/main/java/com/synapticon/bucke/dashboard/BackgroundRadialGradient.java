@@ -14,6 +14,9 @@ public class BackgroundRadialGradient extends View {
     private Paint mPaint;
     private float mSpeed;
 
+    private int[] mColors;
+    private float[] mPositions;
+
     public BackgroundRadialGradient(Context context) {
         super(context);
         init();
@@ -31,6 +34,9 @@ public class BackgroundRadialGradient extends View {
 
     private void init() {
         mPaint = new Paint();
+
+        mColors = new int[]{Color.parseColor("#FF2980B9"), Color.parseColor("#FF2980B9"), Color.parseColor("#FF1D1D1B")};
+        mPositions = new float[]{0f, 0.4f, 1f};
     }
 
     @Override
@@ -40,9 +46,11 @@ public class BackgroundRadialGradient extends View {
         mPaint.setAntiAlias(true);
 
         int speedColor = Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed));
-        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, getWidth() / 2, speedColor, Color.TRANSPARENT, Shader.TileMode.CLAMP));
+        mColors[0] = mColors[1] = speedColor;
+        mPaint.setShader(new RadialGradient(750, getHeight() / 2, 520, mColors, mPositions, Shader.TileMode.CLAMP));
 
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth(), mPaint);
+        mPaint.setAlpha(204);
+        canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
     }
 
     public void setSpeed(float speed) {
