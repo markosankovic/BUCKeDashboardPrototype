@@ -22,7 +22,9 @@ public class DashboardActivity extends Activity {
 
     private static final String TAG = DashboardActivity.class.getSimpleName();
 
-    private boolean hideToggleButtons = false;
+    private boolean mShowToggleButtons = true;
+
+    private ToggleButton mUiToggle;
 
     private SeekBar mSpeedBar;
     private SeekBar mBatteryBar;
@@ -177,7 +179,32 @@ public class DashboardActivity extends Activity {
             }
         });
 
-        if (hideToggleButtons) {
+        mUiToggle = (ToggleButton) findViewById(R.id.ui_toggle);
+        mUiToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mShowToggleButtons = b;
+                actualizeToggleButtons();
+            }
+        });
+
+        actualizeToggleButtons();
+    }
+
+    private void actualizeToggleButtons() {
+        if (mShowToggleButtons) {
+            mLeftBlinkerToggle.setVisibility(View.VISIBLE);
+            mHighBeamToggle.setVisibility(View.VISIBLE);
+            mCameraToggle.setVisibility(View.VISIBLE);
+            mSoundToggle.setVisibility(View.VISIBLE);
+            mReducedPowerToggle.setVisibility(View.VISIBLE);
+            mModeToggle.setVisibility(View.VISIBLE);
+            mRightBlinkerToggle.setVisibility(View.VISIBLE);
+            mSpeedBar.setVisibility(View.VISIBLE);
+            mBatteryBar.setVisibility(View.VISIBLE);
+            mBoostBar.setVisibility(View.VISIBLE);
+            mBatteryChargeText.setVisibility(View.VISIBLE);
+        } else {
             mLeftBlinkerToggle.setVisibility(View.GONE);
             mHighBeamToggle.setVisibility(View.GONE);
             mCameraToggle.setVisibility(View.GONE);
@@ -186,6 +213,9 @@ public class DashboardActivity extends Activity {
             mModeToggle.setVisibility(View.GONE);
             mRightBlinkerToggle.setVisibility(View.GONE);
             mSpeedBar.setVisibility(View.GONE);
+            mBatteryBar.setVisibility(View.GONE);
+            mBoostBar.setVisibility(View.GONE);
+            mBatteryChargeText.setVisibility(View.GONE);
         }
     }
 
