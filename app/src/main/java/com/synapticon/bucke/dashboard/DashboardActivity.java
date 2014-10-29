@@ -110,6 +110,7 @@ public class DashboardActivity extends Activity {
         mModeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mBatteryBox.setDriving(b);
                 mSpeedBox.setDriving(b);
                 mInfoBox.setDriving(b);
 

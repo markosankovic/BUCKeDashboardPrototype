@@ -17,8 +17,10 @@ public class BatteryBox extends View {
     public static final String TAG = BatteryBox.class.getSimpleName();
 
     private Paint mPaint;
-    private TextPaint mBatteryTextPaint;
+    private TextPaint mBatteryTextPaintStandstill;
+    private TextPaint mBatteryTextPaintDriving;
 
+    private boolean driving;
     private int mBatteryStateOfCharge = 100;
     private int mBatteryCharge = 0;
 
@@ -27,8 +29,8 @@ public class BatteryBox extends View {
     private Bitmap mOrangeFrameBitmap;
     private Bitmap mOrangeBackgroundBitmap;
     private Bitmap mRedFrameBitmap;
-    private Bitmap mRedBackgroundBitmap;
 
+    private Bitmap mRedBackgroundBitmap;
     private Bitmap mArrowsGreenUpward;
     private Bitmap mArrowsGreenDownward;
     private Bitmap mArrowsOrangeUpward;
@@ -55,11 +57,17 @@ public class BatteryBox extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
 
-        mBatteryTextPaint = new TextPaint();
-        mBatteryTextPaint.setARGB(255, 255, 255, 255);
-        mBatteryTextPaint.setTextSize(51.43f);
-        mBatteryTextPaint.setAntiAlias(true);
-        mBatteryTextPaint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf"));
+        mBatteryTextPaintStandstill = new TextPaint();
+        mBatteryTextPaintStandstill.setARGB(255, 255, 255, 255);
+        mBatteryTextPaintStandstill.setTextSize(51.43f);
+        mBatteryTextPaintStandstill.setAntiAlias(true);
+        mBatteryTextPaintStandstill.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf"));
+
+        mBatteryTextPaintDriving = new TextPaint();
+        mBatteryTextPaintDriving.setARGB(255, 255, 255, 255);
+        mBatteryTextPaintDriving.setTextSize(51.43f);
+        mBatteryTextPaintDriving.setAntiAlias(true);
+        mBatteryTextPaintDriving.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Roman.otf"));
 
         // Frames and backgrounds
         mGreenFrameBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_green_frame);
@@ -132,8 +140,14 @@ public class BatteryBox extends View {
             canvas.drawBitmap(arrowsBitmap, 23, 30, mPaint);
         }
 
-        canvas.translate(0, 130);
-        new StaticLayout(String.valueOf(mBatteryStateOfCharge), mBatteryTextPaint, 120, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+        if (!isDriving() && mBatteryCharge == 0) {
+            canvas.translate(0, 120);
+            new StaticLayout(String.valueOf(mBatteryStateOfCharge) + "\n%", mBatteryTextPaintStandstill, 120, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+        } else {
+            canvas.translate(0, 130);
+            new StaticLayout(String.valueOf(mBatteryStateOfCharge), mBatteryTextPaintDriving, 120, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+        }
+
         canvas.restore();
     }
 
@@ -165,6 +179,15 @@ public class BatteryBox extends View {
 
     public void setBatteryCharge(int batteryCharge) {
         this.mBatteryCharge = batteryCharge;
+        invalidate();
+    }
+
+    public boolean isDriving() {
+        return driving;
+    }
+
+    public void setDriving(boolean driving) {
+        this.driving = driving;
         invalidate();
     }
 }
