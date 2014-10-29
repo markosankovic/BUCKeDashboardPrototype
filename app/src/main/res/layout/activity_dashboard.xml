@@ -130,21 +130,6 @@
             android:src="@drawable/transition_sound_icon" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="313dp"
-        android:layout_toRightOf="@id/speed_box">
-
-        <ImageView
-            android:id="@+id/warning_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/transition_warning_icon" />
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
