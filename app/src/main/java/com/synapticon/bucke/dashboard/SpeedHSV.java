@@ -6,13 +6,13 @@ public class SpeedHSV {
 
     private static SpeedHSV instance = null;
 
-    private int colorStop1 = Color.parseColor("#FF3293D4");
+    private int colorStop1 = Color.parseColor("#FF3498DB");
     private float[] colorStop1HSV = new float[3];
-    private int colorStop2 = Color.parseColor("#FF19AF91");
+    private int colorStop2 = Color.parseColor("#FF1ABB9B");
     private float[] colorStop2HSV = new float[3];
-    private int colorStop3 = Color.parseColor("#FFEC8D1A");
+    private int colorStop3 = Color.parseColor("#FFF1C40E");
     private float[] colorStop3HSV = new float[3];
-    private int colorStop4 = Color.parseColor("#FFDC4637");
+    private int colorStop4 = Color.parseColor("#FFE74C3C");
     private float[] colorStop4HSV = new float[3];
 
     protected SpeedHSV() {

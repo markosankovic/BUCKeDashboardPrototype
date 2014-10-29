@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -14,12 +16,17 @@ import android.view.View;
 
 public class SpeedBox extends View {
 
+    private static final String TAG = SpeedBox.class.getSimpleName();
+
     private Paint mPaint;
     private TextPaint mSpeedTextPaint;
     private TextPaint mLabelTextPaint;
 
     private boolean driving;
     private float mSpeed;
+
+    private int[] mColors;
+    private float[] mPositions;
 
     public SpeedBox(Context context) {
         super(context);
@@ -40,6 +47,9 @@ public class SpeedBox extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
 
+        mColors = new int[2];
+        mPositions = new float[]{0f, 1f};
+
         mSpeedTextPaint = new TextPaint();
         mSpeedTextPaint.setARGB(255, 255, 255, 255);
         mSpeedTextPaint.setTextSize(413.33f);
@@ -58,7 +68,9 @@ public class SpeedBox extends View {
         super.onDraw(canvas);
 
         // Draw rounded rectangle with color matching the speed
-        mPaint.setColor(Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed)));
+        mColors[0] = Color.HSVToColor(SpeedHSV.getInstance().hsv(mSpeed));
+        mColors[1] = darken(mColors[0], 0.8);
+        mPaint.setShader(new RadialGradient(getWidth() / 2, getHeight() / 2, getWidth() / 2, mColors, mPositions, Shader.TileMode.CLAMP));
         RectF rectF = new RectF(0, 0, getWidth(), getHeight());
         canvas.drawRoundRect(rectF, 42, 42, mPaint);
 
@@ -73,6 +85,13 @@ public class SpeedBox extends View {
         }
 
         canvas.restore();
+    }
+
+    public static int darken(int color, double fraction) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] *= fraction;
+        return Color.HSVToColor(hsv);
     }
 
     public void setSpeed(float speed) {
