@@ -17,7 +17,8 @@ public class BoostBox extends View {
     private Paint mPaint;
 
     private boolean mDriving;
-    private int mBoost = 100;
+
+    private int mBoost = 100, mBoostPrevious = 100;
 
     private Bitmap mGreenFrameBitmap;
     private Bitmap mGreenBackgroundBitmap;
@@ -68,15 +69,22 @@ public class BoostBox extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        // Initially green
         Bitmap frameBitmap = mGreenFrameBitmap;
         Bitmap backgroundBitmap = mGreenBackgroundBitmap;
 
-        if (mBoost <= 20) {
+        // Show red background while charging the boost
+        if (isCharging()) {
             frameBitmap = mRedFrameBitmap;
             backgroundBitmap = mRedBackgroundBitmap;
-        } else if (mBoost <= 35) {
-            frameBitmap = mOrangeFrameBitmap;
-            backgroundBitmap = mOrangeBackgroundBitmap;
+        } else {
+            if (mBoost <= 20) {
+                frameBitmap = mRedFrameBitmap;
+                backgroundBitmap = mRedBackgroundBitmap;
+            } else if (mBoost <= 35) {
+                frameBitmap = mOrangeFrameBitmap;
+                backgroundBitmap = mOrangeBackgroundBitmap;
+            }
         }
 
         canvas.save();
@@ -97,7 +105,7 @@ public class BoostBox extends View {
                 canvas.translate(0, 165);
                 new StaticLayout("max\nboost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
             } else {
-                canvas.translate(0, 197);
+                canvas.translate(0, 190);
                 new StaticLayout("boost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
             }
         }
@@ -123,7 +131,12 @@ public class BoostBox extends View {
     }
 
     public void setBoost(int mBoost) {
+        // On 100% boost and previous boost should have the same value (100),
+        // so that the green background is displayed indicating that boost can be used again.
+        mBoostPrevious = mBoost == 100 ? mBoost : this.mBoost;
+
         this.mBoost = mBoost;
+
         invalidate();
     }
 
@@ -134,5 +147,15 @@ public class BoostBox extends View {
     public void setDriving(boolean driving) {
         this.mDriving = driving;
         invalidate();
+    }
+
+    /**
+     * Determines if the boost is charging or discharging
+     * based on the current and previous boost values.
+     *
+     * @return
+     */
+    public boolean isCharging() {
+        return mBoostPrevious < mBoost ? true : false;
     }
 }
