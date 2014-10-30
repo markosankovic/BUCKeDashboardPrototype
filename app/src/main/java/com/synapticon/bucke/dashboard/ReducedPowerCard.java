@@ -71,11 +71,11 @@ public class ReducedPowerCard extends View {
 
         if (on) {
             canvas.drawBitmap(mOnBitmap, 60, 60, new Paint());
-            canvas.translate(0, 280);
+            canvas.translate(0, 254);
             new StaticLayout("reduced power", mLabelTextPaint, 280, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         } else {
             canvas.drawBitmap(mOnBitmap, 60, 60, new Paint());
-            canvas.translate(0, 280);
+            canvas.translate(0, 254);
             new StaticLayout("reduced power", mLabelTextPaint, 280, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         }
 
