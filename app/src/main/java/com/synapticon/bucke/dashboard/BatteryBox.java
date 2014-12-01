@@ -22,7 +22,7 @@ public class BatteryBox extends View {
 
     private boolean mDriving;
     private int mBatteryStateOfCharge = 100;
-    private int mBatteryCharge = 0;
+    private int mBatteryPower = 0;
 
     private Bitmap mGreenFrameBitmap;
     private Bitmap mGreenBackgroundBitmap;
@@ -80,14 +80,14 @@ public class BatteryBox extends View {
         mRedBackgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_red_background);
 
         // Arrows
-        mArrowsGreenUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_green_upward);
-        mArrowsGreenDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_green_downward);
+        mArrowsGreenUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_upward);
+        mArrowsGreenDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_downward);
 
-        mArrowsOrangeUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_orange_upward);
-        mArrowsOrangeDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_orange_downward);
+        mArrowsOrangeUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_upward);
+        mArrowsOrangeDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_downward);
 
-        mArrowsRedUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_red_upward);
-        mArrowsRedDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_red_downward);
+        mArrowsRedUpward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_upward);
+        mArrowsRedDownward = BitmapFactory.decodeResource(getResources(), R.drawable.battery_box_arrows_white_downward);
     }
 
     @Override
@@ -99,26 +99,26 @@ public class BatteryBox extends View {
 
         Bitmap arrowsBitmap = null;
 
-        if (mBatteryCharge < 0) {
+        if (mBatteryPower < 0) {
             arrowsBitmap = mArrowsGreenDownward;
-        } else if (mBatteryCharge > 0) {
+        } else if (mBatteryPower > 0) {
             arrowsBitmap = mArrowsGreenUpward;
         }
 
         if (mBatteryStateOfCharge <= 20) {
             frameBitmap = mRedFrameBitmap;
             backgroundBitmap = mRedBackgroundBitmap;
-            if (mBatteryCharge < 0) {
+            if (mBatteryPower < 0) {
                 arrowsBitmap = mArrowsRedDownward;
-            } else if (mBatteryCharge > 0) {
+            } else if (mBatteryPower > 0) {
                 arrowsBitmap = mArrowsRedUpward;
             }
         } else if (mBatteryStateOfCharge <= 35) {
             frameBitmap = mOrangeFrameBitmap;
             backgroundBitmap = mOrangeBackgroundBitmap;
-            if (mBatteryCharge < 0) {
+            if (mBatteryPower < 0) {
                 arrowsBitmap = mArrowsOrangeDownward;
-            } else if (mBatteryCharge > 0) {
+            } else if (mBatteryPower > 0) {
                 arrowsBitmap = mArrowsOrangeUpward;
             }
         }
@@ -140,7 +140,7 @@ public class BatteryBox extends View {
             canvas.drawBitmap(arrowsBitmap, 23, 30, mPaint);
         }
 
-        if (!isDriving() && mBatteryCharge == 0) {
+        if (!isDriving() && mBatteryPower == 0) {
             canvas.translate(0, 117);
             new StaticLayout(String.valueOf(mBatteryStateOfCharge) + "\n%", mBatteryTextPaintStandstill, 120, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
         } else {
@@ -173,12 +173,12 @@ public class BatteryBox extends View {
         invalidate();
     }
 
-    public int getBatteryCharge() {
-        return mBatteryCharge;
+    public int getBatteryPower() {
+        return mBatteryPower;
     }
 
-    public void setBatteryCharge(int batteryCharge) {
-        this.mBatteryCharge = batteryCharge;
+    public void setBatteryPower(int batteryPower) {
+        this.mBatteryPower = batteryPower;
         invalidate();
     }
 

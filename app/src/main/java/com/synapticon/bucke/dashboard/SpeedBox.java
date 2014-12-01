@@ -23,7 +23,7 @@ public class SpeedBox extends View {
     private TextPaint mLabelTextPaint;
 
     private boolean driving;
-    private float mSpeed;
+    private int mSpeed;
 
     private int[] mColors;
     private float[] mPositions;
@@ -94,7 +94,11 @@ public class SpeedBox extends View {
         return Color.HSVToColor(hsv);
     }
 
-    public void setSpeed(float speed) {
+    public int getSpeed() {
+        return mSpeed;
+    }
+
+    public void setSpeed(int speed) {
         this.mSpeed = speed;
         invalidate();
     }

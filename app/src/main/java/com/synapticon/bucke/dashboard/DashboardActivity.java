@@ -23,15 +23,15 @@ public class DashboardActivity extends Activity {
 
     private BackgroundRadialGradient mBackgroundRadialGradient;
 
-    private LeftBlinker mLeftBlinker;
-    private RightBlinker mRightBlinker;
+    private LeftTurnSignal mLeftTurnSignal;
+    private RightTurnSignal mRightTurnSignal;
 
     private BatteryBox mBatteryBox;
     private InfoBox mInfoBox;
     private SpeedBox mSpeedBox;
     private BoostBox mBoostBox;
 
-    private HighBeamCard mHighBeamCard;
+    private HeadlightCard mHeadlightCard;
     private ImageView mHighBeamIcon;
     private CameraCard mCameraCard;
     private ImageView mCameraIcon;
@@ -77,21 +77,21 @@ public class DashboardActivity extends Activity {
 
         mInfoBox = (InfoBox) findViewById(R.id.info_box);
 
-        mLeftBlinker = (LeftBlinker) findViewById(R.id.left_blinker);
+        mLeftTurnSignal = (LeftTurnSignal) findViewById(R.id.left_blinker);
         mLeftBlinkerToggle = (ToggleButton) findViewById(R.id.left_blinker_toggle);
         mLeftBlinkerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mLeftBlinker.setBlink(b);
+                mLeftTurnSignal.setBlinking(b);
             }
         });
 
-        mRightBlinker = (RightBlinker) findViewById(R.id.right_blinker);
+        mRightTurnSignal = (RightTurnSignal) findViewById(R.id.right_blinker);
         mRightBlinkerToggle = (ToggleButton) findViewById(R.id.right_blinker_toggle);
         mRightBlinkerToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mRightBlinker.setBlink(b);
+                mRightTurnSignal.setBlinking(b);
             }
         });
 
@@ -117,13 +117,13 @@ public class DashboardActivity extends Activity {
             }
         });
 
-        mHighBeamCard = (HighBeamCard) findViewById(R.id.high_beam_card);
+        mHeadlightCard = (HeadlightCard) findViewById(R.id.high_beam_card);
         mHighBeamIcon = (ImageView) findViewById(R.id.high_beam_icon);
         mHighBeamToggle = (ToggleButton) findViewById(R.id.high_beam_toggle);
         mHighBeamToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mHighBeamCard.setOn(b);
+                mHeadlightCard.setOn(b);
                 toggleDrawableState(mHighBeamIcon.getDrawable(), b);
             }
         });
@@ -178,7 +178,7 @@ public class DashboardActivity extends Activity {
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 try {
                     int n = Integer.valueOf(charSequence.toString());
-                    mBatteryBox.setBatteryCharge(n);
+                    mBatteryBox.setBatteryStateOfCharge(n);
                 } catch (NumberFormatException e) {
                 }
             }
@@ -281,7 +281,7 @@ public class DashboardActivity extends Activity {
     private SeekBar.OnSeekBarChangeListener onBoostBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            mBoostBox.setBoost(i);
+            mBoostBox.setRemainingBoost(i);
         }
 
         @Override

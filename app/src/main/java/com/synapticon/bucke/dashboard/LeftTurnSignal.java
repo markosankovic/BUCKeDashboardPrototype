@@ -12,26 +12,26 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-public class LeftBlinker extends View {
+public class LeftTurnSignal extends View {
 
     private Paint mPaint;
 
-    private boolean mBlink;
+    private boolean mBlinking;
 
     private ValueAnimator mValueAnimator;
     private float mBlinkWidth;
 
-    public LeftBlinker(Context context) {
+    public LeftTurnSignal(Context context) {
         super(context);
         init();
     }
 
-    public LeftBlinker(Context context, AttributeSet attrs) {
+    public LeftTurnSignal(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public LeftBlinker(Context context, AttributeSet attrs, int defStyle) {
+    public LeftTurnSignal(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -43,16 +43,16 @@ public class LeftBlinker extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (mBlink) {
+        if (mBlinking) {
             mPaint.setShader(new LinearGradient(0, 0, mBlinkWidth, 0, Color.parseColor("#FFF1C40E"), Color.TRANSPARENT, Shader.TileMode.CLAMP));
             RectF rectF = new RectF(0, 0, getWidth(), getHeight());
             canvas.drawRect(rectF, mPaint);
         }
     }
 
-    public void setBlink(boolean blink) {
-        this.mBlink = blink;
-        if (blink) {
+    public void setBlinking(boolean blinking) {
+        this.mBlinking = blinking;
+        if (blinking) {
             mValueAnimator = ValueAnimator.ofFloat(80f, 400f, 80f);
             mValueAnimator.setDuration(800);
             mValueAnimator.setRepeatCount(9999);
@@ -69,5 +69,9 @@ public class LeftBlinker extends View {
             mValueAnimator.end();
         }
         invalidate();
+    }
+
+    public boolean isBlinking() {
+        return mBlinking;
     }
 }

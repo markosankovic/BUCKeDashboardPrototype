@@ -20,14 +20,15 @@ public class InfoBox extends View {
     private TextPaint mPassTextPaint;
     private TextPaint mLeftTextPaint;
 
-    private boolean driving;
+    private boolean mDriving;
+    private int mRemainingDistance;
+    private int mTotalDistance;
 
     private Typeface mTypefaceTh;
     private Typeface mTypefaceRoman;
 
     private int[] mColors;
     private float[] mPositions;
-    private RadialGradient mRadialGradient;
 
     public InfoBox(Context context) {
         super(context);
@@ -81,43 +82,59 @@ public class InfoBox extends View {
 
         if (isDriving()) {
             // Set typefaces
-            mPassTextPaint.setTextSize(120f);
+            mPassTextPaint.setTextSize(120f - (String.valueOf(mTotalDistance).length() - 1) * 12);
             mPassTextPaint.setTypeface(mTypefaceRoman);
             mLeftTextPaint.setTextSize(120f);
             mLeftTextPaint.setTypeface(mTypefaceRoman);
-            // Draw LEFT text
-            canvas.translate(40, 20);
-            new StaticLayout("1", mPassTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
             // Draw PASS text
+            canvas.translate(40, 20);
+            new StaticLayout(String.valueOf(mTotalDistance), mPassTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
+            // Draw LEFT text
             canvas.translate(0, 220);
-            new StaticLayout("45", mLeftTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
+            new StaticLayout(String.valueOf(mRemainingDistance), mLeftTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
         } else {
             // Set typefaces
             mPassTextPaint.setTextSize(51.43f);
             mPassTextPaint.setTypeface(mTypefaceTh);
             mLeftTextPaint.setTextSize(51.43f);
             mLeftTextPaint.setTypeface(mTypefaceTh);
-            // Draw LEFT text
-            canvas.translate(40, 40);
-            new StaticLayout("0 km\npass", mPassTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
             // Draw PASS text
+            canvas.translate(40, 40);
+            new StaticLayout(String.format("%d km\npass", mTotalDistance), mPassTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
+            // Draw LEFT text
             canvas.translate(0, 220);
-            new StaticLayout("left\n45 km", mLeftTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
+            new StaticLayout(String.format("left\n%d km", mRemainingDistance), mLeftTextPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, true).draw(canvas);
         }
 
         canvas.restore();
     }
 
     public void setDriving(boolean driving) {
-        this.driving = driving;
+        this.mDriving = driving;
         invalidate();
     }
 
     public boolean isDriving() {
-        return driving;
+        return mDriving;
     }
 
     public boolean isStandstill() {
         return !isDriving();
+    }
+
+    public int getRemainingDistance() {
+        return mRemainingDistance;
+    }
+
+    public void setRemainingDistance(int remainingDistance) {
+        this.mRemainingDistance = remainingDistance;
+    }
+
+    public int getTotalDistance() {
+        return mTotalDistance;
+    }
+
+    public void setTotalDistance(int totalDistance) {
+        this.mTotalDistance = totalDistance;
     }
 }

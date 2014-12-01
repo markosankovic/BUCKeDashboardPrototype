@@ -18,7 +18,7 @@ public class BoostBox extends View {
 
     private boolean mDriving;
 
-    private int mBoost = 100, mBoostPrevious = 100;
+    private int mRemainingBoost = 100;
 
     private Bitmap mGreenFrameBitmap;
     private Bitmap mGreenBackgroundBitmap;
@@ -27,7 +27,7 @@ public class BoostBox extends View {
     private Bitmap mRedFrameBitmap;
     private Bitmap mRedBackgroundBitmap;
 
-    private TextPaint mBoostTextPaint;
+    private TextPaint mRemainingBoostTextPaint;
 
     public BoostBox(Context context) {
         super(context);
@@ -48,11 +48,11 @@ public class BoostBox extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
 
-        mBoostTextPaint = new TextPaint();
-        mBoostTextPaint.setARGB(255, 255, 255, 255);
-        mBoostTextPaint.setTextSize(51.43f);
-        mBoostTextPaint.setAntiAlias(true);
-        mBoostTextPaint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf"));
+        mRemainingBoostTextPaint = new TextPaint();
+        mRemainingBoostTextPaint.setARGB(255, 255, 255, 255);
+        mRemainingBoostTextPaint.setTextSize(51.43f);
+        mRemainingBoostTextPaint.setAntiAlias(true);
+        mRemainingBoostTextPaint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNeueLTStd-Th.otf"));
 
         // Frames and backgrounds
         mGreenFrameBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.boost_box_green_frame);
@@ -73,24 +73,18 @@ public class BoostBox extends View {
         Bitmap frameBitmap = mGreenFrameBitmap;
         Bitmap backgroundBitmap = mGreenBackgroundBitmap;
 
-        // Show red background while charging the boost
-        if (isCharging()) {
+        if (mRemainingBoost <= 20) {
             frameBitmap = mRedFrameBitmap;
             backgroundBitmap = mRedBackgroundBitmap;
-        } else {
-            if (mBoost <= 20) {
-                frameBitmap = mRedFrameBitmap;
-                backgroundBitmap = mRedBackgroundBitmap;
-            } else if (mBoost <= 35) {
-                frameBitmap = mOrangeFrameBitmap;
-                backgroundBitmap = mOrangeBackgroundBitmap;
-            }
+        } else if (mRemainingBoost <= 35) {
+            frameBitmap = mOrangeFrameBitmap;
+            backgroundBitmap = mOrangeBackgroundBitmap;
         }
 
         canvas.save();
 
         // Clip progress based on the boost (percentage)
-        canvas.clipRect(0, progressBarHeight(getHeight(), mBoost), getWidth(), getHeight());
+        canvas.clipRect(0, progressBarHeight(getHeight(), mRemainingBoost), getWidth(), getHeight());
 
         // Draw rounded rectangle to be clipped
         canvas.drawBitmap(backgroundBitmap, 0, 0, mPaint);
@@ -101,12 +95,12 @@ public class BoostBox extends View {
         canvas.drawBitmap(frameBitmap, 0, 0, mPaint);
 
         if (!isDriving()) {
-            if (mBoost == 100) {
+            if (mRemainingBoost == 100) {
                 canvas.translate(0, 165);
-                new StaticLayout("max\nboost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+                new StaticLayout("max\nboost", mRemainingBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
             } else {
                 canvas.translate(0, 190);
-                new StaticLayout("boost", mBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
+                new StaticLayout("boost", mRemainingBoostTextPaint, 153, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true).draw(canvas);
             }
         }
 
@@ -126,17 +120,12 @@ public class BoostBox extends View {
         return height - ((height - 12) * (percentage / 100f) + 6f);
     }
 
-    public int getBoost() {
-        return mBoost;
+    public int getRemainingBoost() {
+        return mRemainingBoost;
     }
 
-    public void setBoost(int mBoost) {
-        // On 100% boost and previous boost should have the same value (100),
-        // so that the green background is displayed indicating that boost can be used again.
-        mBoostPrevious = mBoost == 100 ? mBoost : this.mBoost;
-
-        this.mBoost = mBoost;
-
+    public void setRemainingBoost(int remainingBoost) {
+        this.mRemainingBoost = remainingBoost;
         invalidate();
     }
 
@@ -147,15 +136,5 @@ public class BoostBox extends View {
     public void setDriving(boolean driving) {
         this.mDriving = driving;
         invalidate();
-    }
-
-    /**
-     * Determines if the boost is charging or discharging
-     * based on the current and previous boost values.
-     *
-     * @return
-     */
-    public boolean isCharging() {
-        return mBoostPrevious < mBoost ? true : false;
     }
 }
